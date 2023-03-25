@@ -1,4 +1,4 @@
-import { ConnectWallet, useSDK } from "@thirdweb-dev/react";
+import { useSDK } from "@thirdweb-dev/react";
 import "./assets/css/nucleo-icons.css";
 import "./assets/css/scss/blk-design-system-react.scss";
 import "./assets/css/demo.css";
