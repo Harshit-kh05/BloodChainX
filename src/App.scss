@@ -1,0 +1,31 @@
+.preLoaderContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    font-size: 32px;
+    font-weight: 600;
+  }
+}
+
+.balanceContainer {
+  margin: 0 auto;
+  border-radius: 5px;
+  height: 50px;
+  width: 250px;
+  background-color: white;
+
+  h2 {
+    color: black;
+  }
+}
+
+.redeemContainer {
+  background-color: white;
+}
+
+.logoutBtn {
+  background: #5e72e4 !important;
+}
