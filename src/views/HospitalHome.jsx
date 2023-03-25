@@ -27,7 +27,7 @@ import { useContract, useContractWrite } from "@thirdweb-dev/react";
 
 export default function HospitalHome(props) {
   const { contract } = useContract(
-    "0x6d67c2855C7212bcDb0b668917D7C58497aE0661"
+    "0x3532c319b13d3d867fE96f0AE0B02fC3BB79b5b2"
   );
 
   const { mutateAsync: transferAsset } = useContractWrite(

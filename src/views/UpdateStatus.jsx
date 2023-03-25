@@ -27,7 +27,7 @@ export default function UpdateStatus(props) {
   }, []);
 
   const { contract } = useContract(
-    "0x6d67c2855C7212bcDb0b668917D7C58497aE0661"
+    "0x3532c319b13d3d867fE96f0AE0B02fC3BB79b5b2"
   );
 
   const { mutateAsync: transferAsset } = useContractWrite(
@@ -67,17 +67,16 @@ export default function UpdateStatus(props) {
             user.coords,
             donor.currentBloodBank,
           ]);
-          
+
           // sending token to donor
           const data = await transfer([donor.walletAddress, 10]);
           console.info("contract call successs", data);
-          // sending email 
+          // sending email
           const emaildata = {
             donor_email: donor.email,
             donor_name: donor.name,
-          
           };
-          sendEmail(emaildata,"safe")
+          sendEmail(emaildata, "safe");
         } catch (err) {
           console.log("Error in Transfer function", err);
         }

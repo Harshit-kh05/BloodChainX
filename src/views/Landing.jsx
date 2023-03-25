@@ -69,7 +69,7 @@ export default function Landing() {
               <Col lg={4} md="5">
                 <Row>
                   <Col lg={12}>
-                    <h1>Blood ChainX</h1>
+                    <h1>Rakt Daan Plus</h1>
                   </Col>
                   <Col lg={12}>
                     <h3>Transparency</h3>
