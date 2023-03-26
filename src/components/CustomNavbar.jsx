@@ -31,7 +31,7 @@ export default function CustomNavbar(props) {
   return (
     <Navbar
       className={"fixed-top " + color}
-      variant="dark"
+      variant={url == "login" || url == "register" ? "light" : "dark"}
       color-on-scroll="100"
       expand="lg"
     >

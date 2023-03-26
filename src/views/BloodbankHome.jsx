@@ -138,14 +138,16 @@ export default function BloodbankHome(props) {
     return (
       <>
         <CustomNavbar url="bloodBankHome" />
-        <div className="wrapper p-10 mb-2">
+        <div className="wrapper p-10 mb-2" style={{ background: "#fd5d93" }}>
           <div className="page-header">
             <img
+              style={{ opacity: 0.2 }}
               alt="..."
               className="dots"
               src={require("../assets/img/dots.png")}
             />
             <img
+              style={{ opacity: 0.2 }}
               alt="..."
               className="path"
               src={require("../assets/img/path4.png")}
