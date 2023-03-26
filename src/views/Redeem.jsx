@@ -94,6 +94,23 @@ export default function Redeem() {
                                 </Web3Button>
                               </Col>
                             </Row>
+                            <Row className="align-items-center px-2">
+                              <Col>
+                                <img src={onemgLogo} alt="" />
+                              </Col>
+                              <Col>
+                                <Web3Button
+                                  accentColor="#1E3D8A"
+                                  contractAddress="0x6d67c2855C7212bcDb0b668917D7C58497aE0661"
+                                  action={(contract) =>
+                                    contract.call("burn", 50)
+                                  }
+                                  onSuccess={send}
+                                >
+                                  ₹500 Coupon
+                                </Web3Button>
+                              </Col>
+                            </Row>
                           </div>
                         </Tab>
                       </Tabs>
