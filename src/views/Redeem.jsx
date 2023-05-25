@@ -14,9 +14,7 @@ import FetchFromAadhar from "../dummyAPI/fetchAadhar";
 import { useLocation } from "react-router-dom";
 export default function Redeem() {
   const account = useAddress();
-  const { contract } = useContract(
-    "0x3532c319b13d3d867fE96f0AE0B02fC3BB79b5b2"
-  );
+  const { contract } = useContract(process.env.REACT_APP_CONTRACT_ADD);
   const { data } = useContractRead(contract, "balanceOf", account);
   const location = useLocation();
   useEffect(() => {
@@ -84,7 +82,9 @@ export default function Redeem() {
                               <Col>
                                 <Web3Button
                                   accentColor="#1E3D8A"
-                                  contractAddress="0x3532c319b13d3d867fE96f0AE0B02fC3BB79b5b2"
+                                  contractAddress={
+                                    process.env.REACT_APP_CONTRACT_ADD
+                                  }
                                   action={(contract) =>
                                     contract.call("burn", 10)
                                   }
@@ -101,7 +101,9 @@ export default function Redeem() {
                               <Col>
                                 <Web3Button
                                   accentColor="#1E3D8A"
-                                  contractAddress="0x3532c319b13d3d867fE96f0AE0B02fC3BB79b5b2"
+                                  contractAddress={
+                                    process.env.REACT_APP_CONTRACT_ADD
+                                  }
                                   action={(contract) =>
                                     contract.call("burn", 50)
                                   }

@@ -26,9 +26,7 @@ export default function UpdateStatus(props) {
     };
   }, []);
 
-  const { contract } = useContract(
-    "0x3532c319b13d3d867fE96f0AE0B02fC3BB79b5b2"
-  );
+  const { contract } = useContract(process.env.REACT_APP_CONTRACT_ADD);
 
   const { mutateAsync: transferAsset } = useContractWrite(
     contract,
