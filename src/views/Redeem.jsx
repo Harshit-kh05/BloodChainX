@@ -15,7 +15,7 @@ import { useLocation } from "react-router-dom";
 export default function Redeem() {
   const account = useAddress();
   const { contract } = useContract(
-    "0x6d67c2855C7212bcDb0b668917D7C58497aE0661"
+    "0x3532c319b13d3d867fE96f0AE0B02fC3BB79b5b2"
   );
   const { data } = useContractRead(contract, "balanceOf", account);
   const location = useLocation();
@@ -84,7 +84,7 @@ export default function Redeem() {
                               <Col>
                                 <Web3Button
                                   accentColor="#1E3D8A"
-                                  contractAddress="0x6d67c2855C7212bcDb0b668917D7C58497aE0661"
+                                  contractAddress="0x3532c319b13d3d867fE96f0AE0B02fC3BB79b5b2"
                                   action={(contract) =>
                                     contract.call("burn", 10)
                                   }
@@ -101,7 +101,7 @@ export default function Redeem() {
                               <Col>
                                 <Web3Button
                                   accentColor="#1E3D8A"
-                                  contractAddress="0x6d67c2855C7212bcDb0b668917D7C58497aE0661"
+                                  contractAddress="0x3532c319b13d3d867fE96f0AE0B02fC3BB79b5b2"
                                   action={(contract) =>
                                     contract.call("burn", 50)
                                   }

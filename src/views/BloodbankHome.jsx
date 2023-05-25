@@ -6,7 +6,7 @@ import ProfileCard from "../components/ProfileCard";
 import { useNavigate } from "react-router-dom";
 import globalContext from "../context/GlobalUserContext";
 import DonarCard from "../components/DonarCard";
-import { useAddress, useContract } from "@thirdweb-dev/react";
+import { useContract } from "@thirdweb-dev/react";
 import FetchFromAadhar from "../dummyAPI/fetchAadhar";
 import Preloader from "../components/Preloader";
 
@@ -21,8 +21,6 @@ export default function BloodbankHome(props) {
   const { contract } = useContract(
     "0x3532c319b13d3d867fE96f0AE0B02fC3BB79b5b2"
   );
-
-  const account = useAddress();
 
   const navigate = useNavigate();
 

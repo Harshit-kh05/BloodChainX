@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import FetchFromAadhar from "../dummyAPI/fetchAadhar";
 import { useNavigate } from "react-router-dom";
-import { useAccount, useAddress } from "@thirdweb-dev/react";
+import { useAddress } from "@thirdweb-dev/react";
 
 export default function Login() {
   const [squares1to6, setSquares1to6] = useState("");
@@ -19,7 +19,6 @@ export default function Login() {
 
   const [aadhar, setAadhar] = useState("");
   const [otp, setOtp] = useState("");
-  const [isLoading, setLoading] = useState(false);
   const [aadharCorrect, setAadharCorrect] = useState(false);
 
   const [alertMessage, setAlert] = useState("");
@@ -156,7 +155,7 @@ export default function Login() {
                         size="lg"
                         onClick={formSubmit}
                       >
-                        {aadharCorrect == false ? "Get OTP" : "Submit OTP"}
+                        {aadharCorrect === false ? "Get OTP" : "Submit OTP"}
                       </Button>
                     </Card.Footer>
                   </Card>

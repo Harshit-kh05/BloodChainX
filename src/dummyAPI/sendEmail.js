@@ -4,9 +4,9 @@ export default function sendEmail(templateData, page) {
   console.log(templateData);
   const SERVICE_ID = "service_ekr887l";
   var TEMPLATE_ID;
-  if (page == "safe") {
+  if (page === "safe") {
     TEMPLATE_ID = "template_s8xm61h";
-  } else if (page == "token") {
+  } else if (page === "token") {
     TEMPLATE_ID = "template_1adssxk";
   }
   const PUBLIC_KEY = "Wd5h0UVRI2iClsFZZ";

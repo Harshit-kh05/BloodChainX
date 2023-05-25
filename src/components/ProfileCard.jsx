@@ -1,4 +1,4 @@
-import { Badge, Button, Col, Container, Row } from "react-bootstrap";
+import { Badge, Col, Container, Row } from "react-bootstrap";
 
 export default function ProfileCard(props) {
   var isBank = props.type !== "Blood Bank" ? " d-none" : "";
@@ -25,7 +25,7 @@ export default function ProfileCard(props) {
         <Col></Col>
       </Row>
       <div className={` mt-2 text-center ${isBank}`}>
-        <h2>{props.type == "Blood Bank" ? "Available Blood" : ""}</h2>
+        <h2>{props.type === "Blood Bank" ? "Available Blood" : ""}</h2>
       </div>
       <Row className={isBank}>
         <Col></Col>
