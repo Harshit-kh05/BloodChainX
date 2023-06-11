@@ -1,21 +1,19 @@
 import {
   Badge,
   Button,
-  Card,
   Col,
   Container,
+  Form,
   FormSelect,
+  InputGroup,
   Modal,
-  Nav,
   Row,
-  Spinner,
 } from "react-bootstrap";
 import CustomNavbar from "../components/CustomNavbar";
 
 import { useContext, useEffect, useRef, useState } from "react";
 
 import ProfileCard from "../components/ProfileCard";
-import { useNavigate } from "react-router-dom";
 import globalContext from "../context/GlobalUserContext";
 
 import FetchFromAadhar from "../dummyAPI/fetchAadhar";
@@ -42,7 +40,8 @@ export default function HospitalHome(props) {
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
   const [bloodbankCord, updateBloodbankCord] = useState();
-
+  const [showNotFound, setNotFound] = useState(false);
+  const [email, setEmail] = useState("");
   const qrRef = useRef(null);
   const [code, setCode] = useState("");
   const [hash, setHash] = useState();
@@ -66,22 +65,18 @@ export default function HospitalHome(props) {
     if (data) {
       setCode(data);
     }
-    console.log("data", qrRef);
-    // reader.current.reader.result
-    console.log("data", qrRef.current.reader.result);
     var h = foundBloodData.aadharNo
       .replaceAll(" ", "")
       .concat(foundBloodData.uniqueID);
-    console.log("h", h);
     setHash(sha256(h));
-    console.log("hash", hash);
-    console.log("code", code);
-    // alert(code)
   }
 
   function handleError(err) {
     console.error(err);
   }
+
+  // To add user to waiting list
+  function handleNotify() {}
 
   async function search(e) {
     e.preventDefault();
@@ -128,9 +123,15 @@ export default function HospitalHome(props) {
         }
       }
 
-      if (reqBlood.length == 0) {
+      if (reqBlood.length === 0) {
+        alert("not found");
         setLoading(false);
-        alert("Blood Not Found");
+        setNotFound(true);
+        // modal :-> Do you want to notified when blood is avl
+        // Firebase  Function to add to db
+        //  {
+
+        //   }
         return;
       }
 
@@ -175,8 +176,6 @@ export default function HospitalHome(props) {
       };
 
       setFoundBlood(foundBloodTemp);
-      console.log(foundBloodTemp);
-
       setLoading(false);
       setModal(true);
     } else {
@@ -262,6 +261,51 @@ export default function HospitalHome(props) {
                 <Button className="mt-3" onClick={search}>
                   {!loading ? "Search for Blood " : "Searching For Blood"}
                 </Button>
+                {showNotFound && (
+                  <Modal show={showNotFound} toggle={() => setNotFound(false)}>
+                    <div className="modal-header justify-content-center pt-0">
+                      <h4 className="title title-up">Blood Not Found</h4>
+                    </div>
+                    <Modal.Body style={{ color: "black" }}>
+                      <p className="px-3 text-justify">
+                        Blood Not found. If you want to be added to waitlist
+                        enter your email
+                      </p>
+                    </Modal.Body>
+                    <div className="modal-footer mb-3">
+                      <InputGroup className="mb-3">
+                        <Form.Control
+                          style={{ color: "black", fontSize: 16, width: 50 }}
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                            console.log(email);
+                          }}
+                          placeholder="Email"
+                          aria-label="Username"
+                          aria-describedby="basic-addon1"
+                        />
+                      </InputGroup>
+                      {email && (
+                        <Button
+                          variant="primary"
+                          type="button"
+                          onClick={handleNotify}
+                        >
+                          Add To Waitlist
+                        </Button>
+                      )}
+                      <Button
+                        variant="dark"
+                        onClick={() => {
+                          setNotFound(false);
+                        }}
+                      >
+                        Close
+                      </Button>
+                    </div>
+                  </Modal>
+                )}
                 {modal && (
                   <Modal show={modal} toggle={() => setModal(false)}>
                     <div className="modal-header justify-content-center pt-0">

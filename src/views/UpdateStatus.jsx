@@ -75,6 +75,10 @@ export default function UpdateStatus(props) {
             donor_name: donor.name,
           };
           sendEmail(emaildata, "safe");
+
+          // If added blood is required by anyone
+          // Check in firebase and notify all of them by email
+          // Funciton to do that {}
         } catch (err) {
           console.log("Error in Transfer function", err);
         }
