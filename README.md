@@ -9,6 +9,7 @@
      <img height='100px' width='100px' src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png">
     <img height='100px' width='100px' src='https://global-uploads.webflow.com/617702c73410810254ccd237/622e683142e21d2ae89db970_Thirdweb%20Logo.jpeg'>
     <img height='100px' width='100px' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROCUug2VtoMAXz6S914SASnH5azq3Q3eEUE270TcY&s'> 
+    <img height='100px' width='100px' src='https://user-images.githubusercontent.com/25181517/189716855-2c69ca7a-5149-4647-936d-780610911353.png'> 
 </p>
 
 
