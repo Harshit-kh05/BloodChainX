@@ -68,7 +68,7 @@ export default function Login() {
     console.log(email, pass, account);
 
     let accountExist = data;
-    if (accountExist == false) {
+    if (accountExist === false) {
       setAlert("Account does not exist");
       setShow(true);
       setTimeout(() => setShow(false), 3000);

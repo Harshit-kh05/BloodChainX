@@ -121,7 +121,7 @@ export default function Register() {
         };
         setUserHelper(curUser);
         // redirect to home after registering
-        if (type == "Blood Bank") navigate("/bloodbank-home");
+        if (type === "Blood Bank") navigate("/bloodbank-home");
         else navigate("/hospital-home");
       } catch (error) {
         console.log("User Registration Error: ", error);

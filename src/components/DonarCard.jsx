@@ -3,7 +3,7 @@ import FetchFromAadhar from "../dummyAPI/fetchAadhar";
 
 export default function DonarCard(props) {
   const person = FetchFromAadhar(props.no);
-  console.log(props);
+  //console.log(props);
   return (
     <Container className="donorCard">
       <Card className="card-donor">

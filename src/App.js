@@ -13,8 +13,6 @@ import BloodbankHome from "./views/BloodbankHome";
 import BloodCollection from "./views/BloodCollection";
 import UpdateStatus from "./views/UpdateStatus";
 import HospitalHome from "./views/HospitalHome";
-import Track from "./views/Track";
-import TrackLogin from "./views/TrackLogin";
 import Redeem from "./views/Redeem";
 
 export default function Home() {
@@ -31,7 +29,6 @@ export default function Home() {
         <Route path="/blood-collection" element={<BloodCollection />} />
         <Route path="/update-status" element={<UpdateStatus />} />
         <Route path="/hospital-home" element={<HospitalHome />} />
-        <Route path="/login-track" element={<TrackLogin />} />
         <Route path="/redeem" element={<Redeem />} />
       </Routes>
     </UserState>

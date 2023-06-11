@@ -31,7 +31,7 @@ export default function BloodbankHome(props) {
       const bloodDataArray = [];
       // getting no og blood
       curBloodCount = parseInt(await contract.call("getBloodCount"));
-      console.log("Avl Blood : ", curBloodCount);
+      //     console.log("Avl Blood : ", curBloodCount);
       // initialising all blood count to zero
       var bloodGroupCount = {
         "A +ve": 0,
@@ -57,9 +57,9 @@ export default function BloodbankHome(props) {
         var time = bloodStatus[0];
         var owner = bloodStatus[2];
         var verified = bloodStatus[3];
-        console.log(time);
-        console.log(owner);
-        console.log(verified);
+        //console.log(time);
+        //console.log(owner);
+        //console.log(verified);
         // if current blood bank and owner of current blood sample if smae get its furthur details
         if (user.name.toLowerCase().trim() === owner.toLowerCase().trim()) {
           // getting blood details as its of current blood bank
@@ -98,7 +98,7 @@ export default function BloodbankHome(props) {
 
   function updateStatus(e, d, idx) {
     e.preventDefault();
-    console.log(d);
+    //console.log(d);
     navigate("/update-status", {
       state: {
         id: d.id,

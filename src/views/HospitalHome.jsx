@@ -22,6 +22,8 @@ import GetDistance from "../dummyAPI/GetDistance";
 import { sha256 } from "js-sha256";
 import QrReader from "react-qr-reader";
 import { useContract, useContractWrite } from "@thirdweb-dev/react";
+import { addDoc, collection } from "firebase/firestore";
+import db from "../firebase";
 
 export default function HospitalHome(props) {
   const { contract } = useContract(process.env.REACT_APP_CONTRACT_ADD);
@@ -32,9 +34,7 @@ export default function HospitalHome(props) {
   );
   const { user } = useContext(globalContext);
 
-  const [bloodToBeSearched, setBloodToBeSearched] = useState({
-    selectedBloodGroup: "select",
-  });
+  const [bloodToBeSearched, setBloodToBeSearched] = useState("select");
 
   const [foundBloodData, setFoundBlood] = useState({});
   const [loading, setLoading] = useState(false);
@@ -45,16 +45,6 @@ export default function HospitalHome(props) {
   const qrRef = useRef(null);
   const [code, setCode] = useState("");
   const [hash, setHash] = useState();
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setBloodToBeSearched((prevVal) => {
-      return {
-        ...prevVal,
-        [name]: value,
-      };
-    });
-  }
 
   function handleUpload() {
     console.log(qrRef);
@@ -76,12 +66,19 @@ export default function HospitalHome(props) {
   }
 
   // To add user to waiting list
-  function handleNotify() {}
+  async function handleNotify() {
+    await addDoc(collection(db, "waitlist"), {
+      email: email,
+      bloodGroup: bloodToBeSearched,
+      timestamp: new Date(),
+    }).catch((err) => console.log(err));
+    alert("Added to waitlist");
+  }
 
   async function search(e) {
     e.preventDefault();
     setLoading(true);
-    if (bloodToBeSearched.selectedBloodGroup !== "select") {
+    if (bloodToBeSearched !== "select") {
       var b_count = parseInt(await contract.call("getBloodCount"));
       var reqBlood = []; // multidimensioanl array with blood if distanct coords
 
@@ -104,8 +101,8 @@ export default function HospitalHome(props) {
 
         // checking if bloodGroup is same as req , its in blood bank and is safe
         if (
-          bloodToBeSearched.selectedBloodGroup == bloodGroup &&
-          verified == "1" &&
+          bloodToBeSearched === bloodGroup &&
+          verified === "1" &&
           owner.toString().toLowerCase().includes("blood")
         ) {
           let dis = GetDistance(
@@ -124,14 +121,8 @@ export default function HospitalHome(props) {
       }
 
       if (reqBlood.length === 0) {
-        alert("not found");
         setLoading(false);
         setNotFound(true);
-        // modal :-> Do you want to notified when blood is avl
-        // Firebase  Function to add to db
-        //  {
-
-        //   }
         return;
       }
 
@@ -245,8 +236,8 @@ export default function HospitalHome(props) {
                 <FormSelect
                   className="form-control my-3"
                   name="selectedBloodGroup"
-                  value={bloodToBeSearched.selectedBloodGroup}
-                  onChange={handleChange}
+                  value={bloodToBeSearched}
+                  onChange={(e) => setBloodToBeSearched(e.target.value)}
                 >
                   <option value="select">Select</option>
                   <option value="A +ve">A +ve</option>

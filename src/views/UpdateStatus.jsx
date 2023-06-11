@@ -9,6 +9,14 @@ import { useLocation } from "react-router-dom";
 import Preloader from "../components/Preloader";
 import { useContract, useContractWrite } from "@thirdweb-dev/react";
 import sendEmail from "../dummyAPI/sendEmail";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  deleteDoc,
+} from "firebase/firestore";
+import db from "../firebase";
 
 export default function UpdateStatus(props) {
   const { user } = useContext(globalContext);
@@ -17,6 +25,8 @@ export default function UpdateStatus(props) {
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const waitlistRef = collection(db, "waitlist");
 
   useEffect(() => {
     document.body.classList.toggle("index-page");
@@ -37,8 +47,27 @@ export default function UpdateStatus(props) {
 
   const donor = location.state;
 
+  async function checkWaitlist() {
+    const q = query(waitlistRef, where("bloodGroup", "==", donor.bloodGroup));
+    const queryRes = await getDocs(q);
+    var sendEmailUser = [];
+    queryRes.forEach(async (element) => {
+      const bloodNeedyData = element.data();
+      sendEmailUser.push(bloodNeedyData.email);
+    });
+    sendEmailUser.forEach((user) => {
+      const needyEmailData = {
+        donor_email: user,
+        donor_name: "",
+        email_subject: "Your Requested Blood is Available",
+        email_message: `Thanks for using Rakht Daan Plus.The Blood unit of group ${donor.bloodGroup} is now available. You can now search and take it using hospital portal`,
+      };
+      sendEmail(needyEmailData);
+    });
+    await Promise.all(queryRes.docs.map((doc) => doc.ref.delete()));
+  }
   async function formSubmit(e, status) {
-    console.log(donor);
+    //console.log(donor);
     e.preventDefault();
 
     donor.verified = status;
@@ -51,13 +80,13 @@ export default function UpdateStatus(props) {
         // change verified to true and add changed data in blockchain
         try {
           setLoading(true);
-          console.log(
-            donor.id,
-            donor.currentBloodBank,
-            1,
-            user.coords,
-            donor.currentBloodBank
-          );
+          // console.log(
+          //   donor.id,
+          //   donor.currentBloodBank,
+          //   1,
+          //   user.coords,
+          //   donor.currentBloodBank
+          // );
           await transferAsset([
             donor.id,
             donor.currentBloodBank,
@@ -68,14 +97,19 @@ export default function UpdateStatus(props) {
 
           // sending token to donor
           const data = await transfer([donor.walletAddress, 10]);
-          console.info("contract call successs", data);
+          // console.info("contract call successs", data);
           // sending email
-          const emaildata = {
+          const safeEmaildata = {
             donor_email: donor.email,
             donor_name: donor.name,
+            email_subject: "Your Blood is Safe",
+            email_message:
+              "Thanks for your donation.Your blood is tested and safe and will be used for saving lives. As a token of appreciation we have provided you with 10 RBC tokens that you can utilise for help benefits",
           };
-          sendEmail(emaildata, "safe");
+          sendEmail(safeEmaildata);
 
+          // check is any user is waiting for this Blood Group
+          checkWaitlist();
           // If added blood is required by anyone
           // Check in firebase and notify all of them by email
           // Funciton to do that {}
@@ -83,10 +117,10 @@ export default function UpdateStatus(props) {
           console.log("Error in Transfer function", err);
         }
         // ---------- Generating and downloading QR code
-        console.log(
-          "Generating QR code of",
-          donor.adharNo.replaceAll(" ", "").concat(donor.bloodId)
-        );
+        // console.log(
+        //   "Generating QR code of",
+        //   donor.adharNo.replaceAll(" ", "").concat(donor.bloodId)
+        // );
         try {
           const qrCodeURL = (
             await QRCode.toDataURL(

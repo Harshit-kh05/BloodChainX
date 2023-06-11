@@ -28,15 +28,16 @@ export default function Redeem() {
   // eslint-disable-next-line no-restricted-globals
   const donor = location.state;
   console.log(donor);
-  function send() {
+  function send(price) {
     var aadhar = donor.aadharNo;
     alert("Coupon Sent to Email");
     const data = {
       donor_email: FetchFromAadhar(aadhar).Email,
       donor_name: FetchFromAadhar(aadhar).Name,
-      coupon_code: "AFASX2144",
-      vendor: "1MG",
-      coupon_price: 100,
+      email_subject: "Your coupon is Available Now",
+      email_message: `Your coupon from 1MG of Rs ${price} is Now Available.
+      
+      Coupon Code: RAKHTDAAN${price}`,
     };
 
     sendEmail(data, "token");
@@ -88,7 +89,7 @@ export default function Redeem() {
                                   action={(contract) =>
                                     contract.call("burn", 10)
                                   }
-                                  onSuccess={send}
+                                  onSuccess={send("100")}
                                 >
                                   ₹100 Coupon
                                 </Web3Button>
@@ -107,7 +108,7 @@ export default function Redeem() {
                                   action={(contract) =>
                                     contract.call("burn", 50)
                                   }
-                                  onSuccess={send}
+                                  onSuccess={send("500")}
                                 >
                                   ₹500 Coupon
                                 </Web3Button>
