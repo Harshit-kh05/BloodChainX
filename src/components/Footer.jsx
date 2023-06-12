@@ -8,7 +8,7 @@ export default function Footer() {
       <Container>
         <Row>
           <Col md="3">
-            <h1 className="title">Rakt Daan Plus</h1>
+            <h1 className="title">Blood Chain X</h1>
           </Col>
           <Col md="3">
             <Nav>

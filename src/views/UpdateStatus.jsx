@@ -67,7 +67,6 @@ export default function UpdateStatus(props) {
     await Promise.all(queryRes.docs.map((doc) => doc.ref.delete()));
   }
   async function formSubmit(e, status) {
-    //console.log(donor);
     e.preventDefault();
 
     donor.verified = status;
@@ -80,7 +79,6 @@ export default function UpdateStatus(props) {
         // change verified to true and add changed data in blockchain
         try {
           setLoading(true);
-          // console.log(
           //   donor.id,
           //   donor.currentBloodBank,
           //   1,
@@ -116,18 +114,12 @@ export default function UpdateStatus(props) {
         } catch (err) {
           console.log("Error in Transfer function", err);
         }
-        // ---------- Generating and downloading QR code
-        // console.log(
-        //   "Generating QR code of",
-        //   donor.adharNo.replaceAll(" ", "").concat(donor.bloodId)
-        // );
         try {
           const qrCodeURL = (
             await QRCode.toDataURL(
               sha256(donor.adharNo.replaceAll(" ", "").concat(donor.bloodId))
             )
           ).replace("image/png", "image/octet-stream");
-          console.log(qrCodeURL);
           let aEl = document.createElement("a");
           aEl.href = qrCodeURL;
           aEl.download = donor.name + "_QR_Code.png";

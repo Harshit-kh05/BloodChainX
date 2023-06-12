@@ -80,11 +80,8 @@ export default function Register() {
   async function formSubmit(e) {
     e.preventDefault();
     var accExist = data;
-
-    console.log(name, email, pass, type, add, account);
     if (accExist) {
       setAlert("Account Exist with current Wallet :" + account);
-      console.log(alertMessage);
       setShow(true);
       setTimeout(() => setShow(false), 3000);
     } else if (
@@ -110,8 +107,6 @@ export default function Register() {
           coords = "28.527718654318228,77.21201605513441";
         }
         await addIdentity([name, account, email, pass, add, coords, type]);
-
-        console.log("Registered Successfully");
         var curUser = {
           name: name,
           email: email,

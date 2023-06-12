@@ -58,7 +58,6 @@ export default function BloodCollection() {
 
   async function formSubmit(e) {
     e.preventDefault();
-    console.log(data, user);
     var bloodExist = await contract.call("bloodExist", data.bloodId);
 
     if (data.bloodId === "" || data.aadharNo === "" || data.bloodGroup === "") {

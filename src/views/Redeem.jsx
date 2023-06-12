@@ -27,7 +27,6 @@ export default function Redeem() {
 
   // eslint-disable-next-line no-restricted-globals
   const donor = location.state;
-  console.log(donor);
   function send(price) {
     var aadhar = donor.aadharNo;
     alert("Coupon Sent to Email");

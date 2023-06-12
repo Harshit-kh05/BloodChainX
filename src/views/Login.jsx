@@ -29,7 +29,6 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  console.log(process.env.REACT_APP_CONTRACT_ADD);
   const { contract } = useContract(process.env.REACT_APP_CONTRACT_ADD);
 
   const account = useAddress();
@@ -65,8 +64,6 @@ export default function Login() {
   };
 
   async function formSubmit(e) {
-    console.log(email, pass, account);
-
     let accountExist = data;
     if (accountExist === false) {
       setAlert("Account does not exist");
@@ -99,7 +96,6 @@ export default function Login() {
         } else if (loginStatus === "3") {
           setLoading(true);
           var userData = await contract.call("getLoginDetails", account);
-          console.log(userData);
           var curUser = {
             name: userData[0],
             email: email.toString(),
@@ -107,9 +103,7 @@ export default function Login() {
             coords: userData[3],
             type: userData[1],
           };
-          console.log("Current Logged In User: ", curUser);
           setUserHelper(curUser);
-          console.log("user state", user);
           // redirect to home after registering
           if (userData[1] === "Blood Bank") navigate("/bloodbank-home");
           else navigate("/hospital-home");

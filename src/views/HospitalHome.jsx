@@ -47,7 +47,6 @@ export default function HospitalHome(props) {
   const [hash, setHash] = useState();
 
   function handleUpload() {
-    console.log(qrRef);
     if (qrRef && qrRef.current) qrRef.current.openImageDialog();
   }
 
@@ -98,15 +97,6 @@ export default function HospitalHome(props) {
         var verified = parseInt(bloodStatus[3]);
         var bloodCoords = bloodStatus[1].split(",");
         var userCoords = user.coords.split(",");
-        console.log("bloodData= ", bloodData, " BloodStatus = ", bloodStatus);
-        console.log(
-          "Select = ",
-          bloodToBeSearched,
-          " Avl = ",
-          bloodGroup,
-          " Verified = ",
-          verified
-        );
         // checking if bloodGroup is same as req , its in blood bank and is safe
         if (
           bloodToBeSearched === bloodGroup &&
@@ -143,7 +133,6 @@ export default function HospitalHome(props) {
       updateBloodbankCord(bloodCoords[0] + "," + bloodCoords[1]);
 
       var nearestBlood = reqBlood[0];
-      console.log(nearestBlood);
       // get detail of nearest blood
 
       var nearestBloodData = await contract.call(
@@ -184,13 +173,6 @@ export default function HospitalHome(props) {
   }
 
   async function transferBlood() {
-    console.log(
-      "Transfer from : ",
-      foundBloodData.currentBloodBank,
-      " To : ",
-      user.name
-    );
-
     await transferAsset([
       foundBloodData.id,
       foundBloodData.currentBloodBank,
@@ -278,7 +260,6 @@ export default function HospitalHome(props) {
                           value={email}
                           onChange={(e) => {
                             setEmail(e.target.value);
-                            console.log(email);
                           }}
                           placeholder="Email"
                           aria-label="Username"
