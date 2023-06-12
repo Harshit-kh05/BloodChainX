@@ -25,7 +25,7 @@ export default function BloodbankHome(props) {
   // fetch data from chain
 
   async function fetchChainData() {
-    console.log("fetch data called ");
+    //console.log("fetch data called ");
     try {
       // to save all available blood Donor at current Blood Bank
       const bloodDataArray = [];

@@ -95,14 +95,22 @@ export default function HospitalHome(props) {
         );
         var bloodGroup = bloodData[2];
         var owner = bloodStatus[2];
-        var verified = bloodStatus[3];
+        var verified = parseInt(bloodStatus[3]);
         var bloodCoords = bloodStatus[1].split(",");
         var userCoords = user.coords.split(",");
-
+        console.log("bloodData= ", bloodData, " BloodStatus = ", bloodStatus);
+        console.log(
+          "Select = ",
+          bloodToBeSearched,
+          " Avl = ",
+          bloodGroup,
+          " Verified = ",
+          verified
+        );
         // checking if bloodGroup is same as req , its in blood bank and is safe
         if (
           bloodToBeSearched === bloodGroup &&
-          verified === "1" &&
+          verified === 1 &&
           owner.toString().toLowerCase().includes("blood")
         ) {
           let dis = GetDistance(
