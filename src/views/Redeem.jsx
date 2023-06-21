@@ -88,7 +88,7 @@ export default function Redeem() {
                                   action={(contract) =>
                                     contract.call("burn", 10)
                                   }
-                                  onSuccess={send("100")}
+                                  onSuccess={() => send("100")}
                                 >
                                   ₹100 Coupon
                                 </Web3Button>
@@ -107,7 +107,7 @@ export default function Redeem() {
                                   action={(contract) =>
                                     contract.call("burn", 50)
                                   }
-                                  onSuccess={send("500")}
+                                  onSuccess={() => send("500")}
                                 >
                                   ₹500 Coupon
                                 </Web3Button>
