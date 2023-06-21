@@ -1,4 +1,4 @@
-### Rakht Daan Plus is a blockchain-powered solution for blood donation and distribution management. It ensures donor data integrity and prevents fraud, effectively manages surplus blood supply, and promotes transparency in the process.
+### BlockChainX is a blockchain-powered solution for blood donation and distribution management. It ensures donor data integrity and prevents fraud, effectively manages surplus blood supply, and promotes transparency in the process.
 
 
 ### Technologies Used :
@@ -18,7 +18,7 @@
 
 India faces a critical shortage of quality blood, with a deficit of 4 million units per year, particularly in rural and remote areas. The current blood management system is plagued by inefficiencies, lack of transparency, and wastage of blood due to poor storage and management practices. Additionally, the presence of fraudulent organizations exacerbates the challenges faced by those in need of blood transfusions. There is an urgent need for a reliable and efficient blood management system to improve the overall availability and quality of blood, increase transparency and accountability, and address the concerns of blood donors.
 
-To address these problems we have built Rakt Daan.
+To address these problems we have built BloodChainX.
 
 ## How Our System Works :
 
