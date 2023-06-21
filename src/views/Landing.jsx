@@ -79,7 +79,7 @@ export default function Landing() {
                 <Row>
                   <Col lg={12}>
                     <h1 style={{ textDecoration: "underline" }}>
-                      Rakt Daan Plus
+                      Blood Chain X
                     </h1>
                   </Col>
                   <Col lg={12}>

@@ -4,7 +4,7 @@ import loader from "../assets/img/loader.gif";
 const Preloader = () => {
   return (
     <Container className="preLoaderContainer">
-      <img src={loader} alt="" srcset="" />
+      <img src={loader} alt="" srcSet="" />
     </Container>
   );
 };

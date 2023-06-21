@@ -36,7 +36,7 @@ export default function Redeem() {
       email_subject: "Your coupon is Available Now",
       email_message: `Your coupon from 1MG of Rs ${price} is Now Available.
       
-      Coupon Code: RAKHTDAAN${price}`,
+      Coupon Code: BloodChainX${price}`,
     };
 
     sendEmail(data, "token");

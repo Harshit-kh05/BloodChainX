@@ -9,13 +9,7 @@ import { useLocation } from "react-router-dom";
 import Preloader from "../components/Preloader";
 import { useContract, useContractWrite } from "@thirdweb-dev/react";
 import sendEmail from "../dummyAPI/sendEmail";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  deleteDoc,
-} from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import db from "../firebase";
 
 export default function UpdateStatus(props) {
@@ -60,11 +54,10 @@ export default function UpdateStatus(props) {
         donor_email: user,
         donor_name: "",
         email_subject: "Your Requested Blood is Available",
-        email_message: `Thanks for using Rakht Daan Plus.The Blood unit of group ${donor.bloodGroup} is now available. You can now search and take it using hospital portal`,
+        email_message: `Thanks for using Blood Chain X.The Blood unit of group ${donor.bloodGroup} is now available. You can now search and take it using hospital portal`,
       };
       sendEmail(needyEmailData);
     });
-    await Promise.all(queryRes.docs.map((doc) => doc.ref.delete()));
   }
   async function formSubmit(e, status) {
     e.preventDefault();
