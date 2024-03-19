@@ -1,4 +1,4 @@
-### BlockChainX is a blockchain-powered solution for blood donation and distribution management. It ensures donor data integrity and prevents fraud, effectively manages surplus blood supply, and promotes transparency in the process.
+### BloodChainX is a blockchain-powered solution for blood donation and distribution management. It ensures donor data integrity and prevents fraud, effectively manages surplus blood supply, and promotes transparency in the process.
 
 
 ### Technologies Used :
